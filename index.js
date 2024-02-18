@@ -41,6 +41,8 @@ app.post("/", async (req, res) => {
         if (err) throw err;
         console.log("1 document inserted");
       });
+  } catch (err) {
+    res.status(500).json({ message: "ERROR" });
   } finally {
     await client.close();
   }
