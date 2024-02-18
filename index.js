@@ -13,7 +13,6 @@ const client = new MongoClient(
     useNewUrlParser: true,
   }
 );
-
 const url =
   "mongodb+srv://trumle2k1:z3cqaIhfuWMPAoIX@cluster0.e4mqe6j.mongodb.net";
 const mongodbOptions = {};
@@ -52,11 +51,13 @@ app.post("/", async (req, res) => {
 });
 
 app.get("/message", async (req, res) => {
+ 
   try {
     const db = client.db(dbName);
     const collection = db.collection("message");
-    const result = await collection.find({}).toArray();
-    res.json(result);
+    const result = await collection.find({}).toArray(); 
+    console.log("get data success")
+    res.status(200).json(result);
   } catch (err) {
     res.status(500).json({ message: "ERROR" });
   } finally {
